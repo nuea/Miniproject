@@ -1,10 +1,9 @@
 <?php
-  $serverName = "localhost";
-  $userName = "root";
-  $userPassword = "";
-  $dbName = "totorohotal";
-
-  $conn = mysqli_connect($serverName,$userName,$userPassword,$dbName);
+  $dbServername="localhost";
+  $dbUsername="root";
+  $dbPassword="";
+  $dbName="totorohotal";
+  $conn = mysqli_connect($dbServername,$dbUsername,$dbPassword,$dbName);
 /*
   if (mysqli_connect_errno())
   {

@@ -1,6 +1,6 @@
 <?php
   include 'header.php';
-  include 'db.inc/dbc.conn.inc.php';
+  $RT_ID = $_GET["RT_ID"];
   ?>
 
 
@@ -64,7 +64,7 @@
 					<button class="contact100-form-btn" type="submit">
 						Book Now
 					</button>
-				</div>
+			</div>
     </form>
   </div>
 </div>

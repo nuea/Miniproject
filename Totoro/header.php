@@ -1,3 +1,4 @@
+<?php include 'db.inc/dbc.conn.inc.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

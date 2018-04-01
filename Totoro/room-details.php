@@ -1,8 +1,18 @@
-<?php include 'header.php';?>
+<?php
+    include 'header.php';
+    $RT_ID = $_GET["RT_ID"];
+
+    $query = "SELECT COUNT(r.RT_ID) AS CountRoom, r.*, rt.* FROM room r
+    LEFT JOIN roomtype rt ON rt.RT_ID = r.RT_ID 
+    WHERE rt.RT_ID = '$RT_ID'
+    GROUP BY r.RT_ID ORDER BY rt.RT_ID ";
+    $result = mysqli_query($conn,$query);
+    $rs = mysqli_fetch_assoc($result);
+?>
 
 <div class="container">
 
-    <h1 class="title">Luxirious Suites</h1>
+    <h1 class="title"><?php echo $rs['RoomType']; ?></h1>
 
     <!-- RoomDetails -->
     <div id="" class="room_detail" data-ride="carousel">
@@ -13,8 +23,7 @@
     <div class="room-features spacer">
         <div class="row">
             <div class="col-sm-12 col-md-5"> 
-            <p>Space in your house How to sell faster than your neighbors How to make a strategic use. To discourage you by telling. To discourage you by telling. I m going to outline 14 different ways that I ve found you. The real goal of any talk or speech. The real goal of any talk or speech. I m going to outline 14 different ways that I ve found you. The real goal of any talk or speech. I m going to outline 14 different ways that I ve found you. The real goal of any talk or speech. To discourage you by telling. To discourage you by telling. Space in your house How to sell faster than your neighbors How to make a strategic use. The real goal of any talk or speech.</p>
-            <p>By Learning Ways To Become Peaceful. One of the greatest barriers to making the sale is your prospect's natural. Don't stubbornly. Don't stubbornly. Don't stubbornly. -And Gain Power By Learning Ways To Become Peaceful. </p>
+                <p><?php echo $rs['Description']; ?></p>
             </div>
             <div class="col-sm-6 col-md-3 amenitites"> 
                 <h3>Room Facilities</h3>    
@@ -27,13 +36,15 @@
                 </ul>
             </div>  
             <div class="col-sm-3 col-md-2">
-            <div class="size-price">Size<span>44 sq</span></div>
+            <div class="size-price">Size<span><?php echo $rs['SizeRoom']; ?></span></div>
             </div>
             <div class="col-sm-3 col-md-2">
-            <div class="size-price">Price<span>$200.00</span></div>
+            <div class="size-price">Price<span><?php echo number_format($rs['PriceRoom']); ?> THB</span></div>
             </div>
-        </div>
-    </div>             
-
+        </div>        
+        <div class="container-contact100-form-btn">
+            <a href="reservation.php?RT_ID=<?php echo $RT_ID; ?>" class="contact100-form-btn">Book Now</a>
+        </div>  
+    </div>       
 </div>
 <?php include 'footer.php';?>
