@@ -1,6 +1,6 @@
 <?php
   include 'header.php';
-  $RT_ID = $_GET["RT_ID"];
+  //$RT_ID = $_GET["RT_ID"];
   ?>
 
 

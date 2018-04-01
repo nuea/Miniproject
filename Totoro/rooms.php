@@ -1,20 +1,41 @@
 <?php
     include 'header.php';
 
-    $query = "SELECT COUNT(r.RT_ID) AS CountRoom, r.*, rt.* FROM room r
+  /*$query = "SELECT COUNT(r.RT_ID) AS CountRoom, r.*, rt.* FROM room r
     LEFT JOIN roomtype rt ON rt.RT_ID = r.RT_ID 
     GROUP BY r.RT_ID ORDER BY rt.RT_ID ";
-    $result = mysqli_query($conn,$query);
+    $result = mysqli_query($conn,$query);  */
 ?>
+<script>
+    var obj ;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            obj = JSON.parse(this.responseText);
+            var data = '';
+            for(var i=0; i<obj.items.length; i++){
+                data += "<div class='col-sm-6 wowload fadeInUp'>";
+                data += "<div class='rooms'>";
+                data += "<img src=\"img/room/Luxurious_Suites.jpg\" class=\"img-responsive\">";
+                data += "<div class=\"info\">";
+                data += "<h3>"+obj.items[i].type+"</h3>";
+                data += "<p>Room service is "+obj.items[i].count+"</p>";
+                data += "<p>2 bedroom / 2 bathroom / 1 Living room</p>";
+                data += "<a href=\"room-details.php?RT_ID="+obj.items[i].RT_ID+"\" class=\"btn btn-default\">Check Details</a>";
+                data += "</div></div></div>";
+            }
+            document.getElementById("out").innerHTML = data;
 
+        }
+    };
+    xmlhttp.open("GET", "db.inc/db.select.room.php?f=sr", true);
+    xmlhttp.send();
+</script>
 <div class="container">
     <h2>Rooms</h2>
     <div class="row">
-<?php
-    while($rs = mysqli_fetch_assoc($result))
-    {
-?>
-         <div class="col-sm-6 wowload fadeInUp">
+        <div id="out">
+            <div class="col-sm-6 wowload fadeInUp">
                 <div class="rooms">
                     <img src="img/room/Luxurious_Suites.jpg" class="img-responsive">
                     <div class="info">
@@ -25,10 +46,11 @@
                     </div>
                 </div>
             </div>
-<?php
-    }
-?>
         </div>
+<?php
+   // }
+?>
+    </div>
     <!-- form
 
     <div class="row">
