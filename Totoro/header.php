@@ -32,6 +32,8 @@
 <link rel="icon" href="img/favicon.png" type="image/x-icon">
 
 <link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/styleRes.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
 </head>
 

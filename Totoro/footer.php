@@ -78,6 +78,10 @@
 <!-- custom script -->
 <script src="assets/script.js"></script>
 
+<!--from reservation -->
+<script src="assets/main.js"></script>
+<script src="assets/jquery/jquery-3.2.1.min.js"></script>
+
 
 </body>
 </html>

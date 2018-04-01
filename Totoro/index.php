@@ -9,7 +9,7 @@
     <div class="welcome-message">
         <div class="wrap-info">
             <div class="information">
-                <h1  class="animated fadeInDown">Totoro Kingdom</h1>
+                <h1  class="animated fadeInDown">Totoro Hotal</h1>
                 <p class="animated fadeInUp">Most luxurious hotels in the Kingdom Totoro with security and excellent customer services.</p>                
             </div>
             <a href="#information" class="arrow-nav scroll wowload fadeInDownBig"><i class="fa fa-angle-down"></i></a>
