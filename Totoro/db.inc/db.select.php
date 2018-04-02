@@ -1,5 +1,4 @@
 <?php
- // 
   /* select room */
   $room = $_GET["room"];
 
@@ -14,9 +13,8 @@
       'details' => 'details room',
       'items' => array()
  );
-    $query = "SELECT COUNT(r.RT_ID) AS CountRoom, r.*, rt.* FROM room r  
-    LEFT JOIN roomtype rt ON rt.RT_ID = r.RT_ID 
-    GROUP BY r.RT_ID ORDER BY rt.RT_ID ";
+    $query = "SELECT COUNT(r.RT_ID) AS CountRoom, rt.* FROM roomtype rt 
+    LEFT JOIN room r ON rt.RT_ID = r.RT_ID GROUP BY r.RT_ID ORDER BY rt.RT_ID ";
     $result = mysqli_query($conn,$query);
     while($rs = mysqli_fetch_assoc($result))
     {
@@ -34,5 +32,5 @@
   if ($room == "room"){
     echo SelectRoom();
   }
-
+  /* end select room */
 ?>
