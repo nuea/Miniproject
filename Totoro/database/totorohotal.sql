@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2018 at 11:27 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Apr 02, 2018 at 06:18 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,10 +44,35 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `mannageroom` (
   `Room_Key` int(11) NOT NULL,
-  `Status` enum('ON','OFF') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'ON',
-  `ServicCharge` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `LastTime` date NOT NULL
+  `Status` enum('ON','OFF','BOOK') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'OFF',
+  `LastTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `mannageroom`
+--
+
+INSERT INTO `mannageroom` (`Room_Key`, `Status`, `LastTime`) VALUES
+(1, 'OFF', '2018-04-02 15:52:36'),
+(2, 'OFF', '2018-04-02 15:52:36'),
+(3, 'OFF', '2018-04-02 15:52:36'),
+(4, 'OFF', '2018-04-02 15:52:36'),
+(5, 'OFF', '2018-04-02 15:52:36'),
+(6, 'OFF', '2018-04-02 15:52:36'),
+(7, 'OFF', '2018-04-02 15:52:36'),
+(8, 'OFF', '2018-04-02 15:52:36'),
+(9, 'OFF', '2018-04-02 15:52:36'),
+(10, 'OFF', '2018-04-02 15:52:36'),
+(11, 'OFF', '2018-04-02 15:52:36'),
+(12, 'OFF', '2018-04-02 15:52:36'),
+(13, 'OFF', '2018-04-02 15:52:36'),
+(14, 'OFF', '2018-04-02 15:52:36'),
+(15, 'OFF', '2018-04-02 15:52:36'),
+(16, 'OFF', '2018-04-02 15:52:36'),
+(17, 'OFF', '2018-04-02 15:52:36'),
+(18, 'OFF', '2018-04-02 15:52:36'),
+(19, 'OFF', '2018-04-02 15:52:36'),
+(20, 'OFF', '2018-04-02 15:52:36');
 
 -- --------------------------------------------------------
 
