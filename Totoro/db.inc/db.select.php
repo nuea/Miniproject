@@ -1,8 +1,8 @@
 <?php
-  /* select room */
+ 
   $room = $_GET["room"];
-
-  function SelectRoom()
+  /* select room */ 
+  function JoinRoom()
   {
     include 'db.conn.inc.php';
     $arr = array(
@@ -29,8 +29,36 @@
     $json = json_encode($arr);
     echo $json;
   }
-  if ($room == "room"){
-    echo SelectRoom();
-  }
   /* end select room */
+
+   /* Select Room Type */ 
+   function SelectRoomType($RT_ID){
+    include 'db.conn.inc.php';  
+    $room = array();
+    $query = "SELECT  rt.* FROM roomtype rt WHERE rt.RT_ID = '".$RT_ID."'";
+    $result = mysqli_query($conn, $query) or die (mysqli_error());
+    //$rs = mysqli_fetch_assoc($result); 
+    while($rs = mysqli_fetch_array($result))
+    {
+      $room[] = array(
+          'R_typeR' => $rs['RoomType'],
+          'R_Des' => $rs['Description'],
+          'R_key' => $rs['RT_ID'],          
+          'R_img' => $rs['img'],          
+          'R_details' => $rs['details'],      
+          'R_price' => $rs['PriceRoom'],        
+          'R_size' => $rs['SizeRoom'] 
+      );
+    }
+    $json = json_encode($room);
+    echo $json;
+   }
+
+  if ($room == "room"){
+    echo JoinRoom();
+  }
+  else if ($room == "roomtype"){
+    $RT_ID = $_GET["RT_ID"]; 
+    echo SelectRoomType($RT_ID);
+  }
 ?>

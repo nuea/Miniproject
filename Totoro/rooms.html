@@ -20,15 +20,16 @@
                 data += "<h3>"+obj.items[i].typeR+"</h3>";
                 data += "<p>Room service is "+obj.items[i].count+"</p>";
                 data += "<p>"+obj.items[i].details+"</p>";
-                data += "<a href=\"room-details.php?RT_ID="+obj.items[i].RT_ID+"\" class=\"btn btn-default\">Check Details</a>";
+                data += "<a href=\"room-details.html?room=roomtype&RT_ID="+obj.items[i].RT_ID+"\" class=\"btn btn-default\">Check Details</a>";
                 data += "</div></div></div>";
             }
             document.getElementById("out").innerHTML = data;
-
         }
     };
-    xmlhttp.open("GET", "db.inc/db.select.php?room=room", true);
-    xmlhttp.send();
+    /*setInterval(function() {*/
+        xmlhttp.open("GET", "db.inc/db.select.php?room=room", true);
+        xmlhttp.send();
+    /*}, 1000);*/
 </script>
 <div id="header"></div>
 <div class="container">
@@ -42,7 +43,7 @@
                         <h3></h3>
                         <p>Room service is </p> 
                         <p>2 bedroom / 2 bathroom / 1 Living room</p>
-                        <a href="room-details.php?RT_ID=" class="btn btn-default">Check Details</a>
+                        <a href="room-details.html?RT_ID=" class="btn btn-default">Check Details</a>
                     </div>
                 </div>
             </div>
