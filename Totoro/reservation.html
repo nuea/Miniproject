@@ -4,40 +4,76 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Totoro Hotel</title>
-
 <!-- Google fonts -->
 <link href='http://fonts.googleapis.com/css?family=Raleway:300,500,800|Old+Standard+TT' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Raleway:300,500,800' rel='stylesheet' type='text/css'>
-
 <!-- font awesome -->
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
-
 <!-- bootstrap -->
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-
-<!-- uniform -->
-<link type="text/css" rel="stylesheet" href="assets/uniform/css/uniform.default.min.css" />
-
+<!-- uniform 
+<link type="text/css" rel="stylesheet" href="assets/uniform/css/uniform.default.min.css" />-->
 <!-- animate.css -->
 <link rel="stylesheet" href="assets/wow/animate.css" />
-
-
 <!-- gallery -->
 <link rel="stylesheet" href="assets/gallery/blueimp-gallery.min.css">
-
-
 <!-- favicon -->
 <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 <link rel="icon" href="img/favicon.png" type="image/x-icon">
-
+<!-- add -->
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="assets/styleRes.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-
+	<!-- ===== calendar ===== -->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<link rel="stylesheet" type="text/css" href="codebase/fonts/font_roboto/roboto.css"/>
+	<link rel="stylesheet" type="text/css" href="codebase/dhtmlxcalendar.css"/>
+	<script src="codebase/dhtmlxcalendar.js"></script>
+	<style>
+	/*	input#date_from, input#date_to {
+			border: 1px solid #dfdfdf;
+			font-family: Roboto, Arial, Helvetica;
+			font-size: 14px;
+			color: #404040;
+			background-color: #fafafa;
+			border: #c0c0c0 1px solid;
+			width: 100px;
+		}
+		span.label {
+			font-family: Roboto, Arial, Helvetica;
+			font-size: 14px;
+			color: #404040;
+		}*/
+	</style>
+	<script>
+		var myCalendar;
+		function doOnLoad() {
+			myCalendar = new dhtmlXCalendarObject(["date_from","date_to"]);
+			myCalendar.setDate("2013-03-10");
+			myCalendar.hideTime();
+			// init values
+			var t = new Date();
+			byId("date_from").value = "2013-03-05";
+			byId("date_to").value = "2013-03-15";
+		}
+		
+		function setSens(id, k) {
+			// update range
+			if (k == "min") {
+				myCalendar.setSensitiveRange(byId(id).value, null);
+			} else {
+				myCalendar.setSensitiveRange(null, byId(id).value);
+			}
+		}
+		function byId(id) {
+			return document.getElementById(id);
+		}
+	</script>
+	<!-- ===== calendar ===== -->
 </head>
 
-<body id="home">
+<body id="home" onload="doOnLoad();">
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
@@ -54,59 +90,66 @@
   <div class="wrap-contact100">
     <form action="" method="post" class="contact100-form validate-form">
       <span class="contact100-form-title">Room Reservation</span>
-
+      
+      <h4>Full Name</h4>
       <div class="validate-input" data-validate="Please enter your name">
-					<input class="input100" type="text" name="name" placeholder="Full Name">
-					<span class="focus-input100"></span>
+        <input class="input100" type="text" name="name" placeholder="Full Name">
+        <span class="focus-input100"></span>
       </div>
       
+      <h4>ID CARD</h4>
       <div class="validate-input" data-validate="Please enter id card">
-					<input class="input100" type="text" name="idcard" placeholder="ID CARD">
-					<span class="focus-input100"></span>
+        <input class="input100" type="text" name="idcard" placeholder="ID CARD">
+        <span class="focus-input100"></span>
       </div>
-      
+
+      <h4>E-mail</h4>
       <div class="validate-input" data-validate="Please enter email: e@a.x">
-					<input class="input100" type="text" name="email" placeholder="E-mail">
-					<span class="focus-input100"></span>
+        <input class="input100" type="text" name="email" placeholder="E-mail">
+        <span class="focus-input100"></span>
       </div>
       
+      <h4>Phone</h4>
       <div class="validate-input" data-validate="Please enter phone">
-					<input class="input100" type="text" name="phone" placeholder="Phone">
-					<span class="focus-input100"></span>
+        <input class="input100" type="text" name="phone" placeholder="Phone">
+        <span class="focus-input100"></span>
       </div>
       
       <div hidden class="validate-input" data-validate="Please enter room type">
 					<input class="input100" type="text" name="roomtype" placeholder="Room Type">
       </div>
       
+      <h4>Room type</h4>
       <div class="validate-input" data-validate="Please enter room type">
-          <select class="input100" name="roomtype" id="roomtype">
-          <?php
-            $sql = "SELECT * FROM `roomtype`";
-            $result = mysqli_query($conn, $sql);
-            while($rs = mysqli_fetch_assoc($result)) {
-          ?>
-            <option value="<?php echo $rs['RT_ID']; ?>"><?php echo $rs['RoomType']; ?></option>
-          <?php
-            }
-          ?>
-          </select>
-					<span class="focus-input100"></span>
+        <select class="input100" name="roomtype" id="roomtype">
+        <?php
+          $sql = "SELECT * FROM `roomtype`";
+          $result = mysqli_query($conn, $sql);
+          while($rs = mysqli_fetch_assoc($result)) {
+        ?>
+          <option value="<?php echo $rs['RT_ID']; ?>"><?php echo $rs['RoomType']; ?></option>
+        <?php
+          }
+        ?>
+        </select>
+        <span class="focus-input100"></span>
       </div>
       
+      <h4>Check In</h4>
       <div class="validate-input" data-validate="Please enter check in">
-					<input class="input100" type="text" name="checkin" placeholder="Check In">
-					<span class="focus-input100"></span>
+        <input class="input100" type="text" id="date_from" onclick="setSens('date_to', 'max');" readonly="true"  placeholder="Check In">
+        <span class="focus-input100"></span>
       </div>
       
+      <h4>Check Out</h4>
       <div class="validate-input" data-validate="Please enter check out">
-					<input class="input100" type="text" name="checkout" placeholder="Check Out">
-					<span class="focus-input100"></span>
+        <input class="input100" type="text" id="date_to" onclick="setSens('date_from', 'min');" readonly="true" placeholder="Check Out">
+				<span class="focus-input100"></span>
       </div>
       <div class="container-contact100-form-btn">
-					<button class="contact100-form-btn" type="submit">
-						Book Now
-					</button>
+        <button class="contact100-form-btn" type="submit">
+          Book Now
+        </button>
 			</div>
     </form>
   </div>
