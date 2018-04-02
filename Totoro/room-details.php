@@ -9,7 +9,14 @@
     $result = mysqli_query($conn,$query);
     $rs = mysqli_fetch_assoc($result);
 ?>
-
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    $(function(){
+        $("#header").load("header.html"); 
+        $("#footer").load("footer.html"); 
+    });
+</script>
+<div id="header"></div>
 <div class="container">
 
     <h1 class="title"><?php echo $rs['RoomType']; ?></h1>
@@ -47,4 +54,4 @@
         </div>  
     </div>       
 </div>
-<?php include 'footer.php';?>
+<div id="footer"></div>

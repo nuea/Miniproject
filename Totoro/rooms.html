@@ -1,0 +1,52 @@
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    $(function(){
+        $("#header").load("header.html"); 
+        $("#footer").load("footer.html"); 
+    });
+</script>
+<script>
+    var obj ;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            obj = JSON.parse(this.responseText);
+            var data = '';
+            for(var i=0; i<obj.items.length; i++){
+                data += "<div class='col-sm-6 wowload fadeInUp'>";
+                data += "<div class='rooms'>";
+                data += "<img src=\"img/room/"+obj.items[i].img+"\" class=\"img-responsive\">";
+                data += "<div class=\"info\">";
+                data += "<h3>"+obj.items[i].typeR+"</h3>";
+                data += "<p>Room service is "+obj.items[i].count+"</p>";
+                data += "<p>"+obj.items[i].details+"</p>";
+                data += "<a href=\"room-details.php?RT_ID="+obj.items[i].RT_ID+"\" class=\"btn btn-default\">Check Details</a>";
+                data += "</div></div></div>";
+            }
+            document.getElementById("out").innerHTML = data;
+
+        }
+    };
+    xmlhttp.open("GET", "db.inc/db.select.php?room=room", true);
+    xmlhttp.send();
+</script>
+<div id="header"></div>
+<div class="container">
+    <h2>Rooms</h2>
+    <div class="row">
+        <div id="out">
+            <div class="col-sm-6 wowload fadeInUp">
+                <div class="rooms">
+                    <img src="img/room/Luxurious_Suites.jpg" class="img-responsive">
+                    <div class="info">
+                        <h3></h3>
+                        <p>Room service is </p> 
+                        <p>2 bedroom / 2 bathroom / 1 Living room</p>
+                        <a href="room-details.php?RT_ID=" class="btn btn-default">Check Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer"></div>

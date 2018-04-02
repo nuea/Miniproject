@@ -1,15 +1,17 @@
 <?php
  // 
   /* select room */
-  $f = $_GET["f"];
+  $room = $_GET["room"];
 
   function SelectRoom()
   {
     include 'db.conn.inc.php';
     $arr = array(
-      'type' => 'Room type',
+      'typeR' => 'Room type',
       'count' => 'room total',
       'RT_ID' => 'id room type',
+      'img' => 'img room',
+      'details' => 'details room',
       'items' => array()
  );
     $query = "SELECT COUNT(r.RT_ID) AS CountRoom, r.*, rt.* FROM room r  
@@ -19,15 +21,18 @@
     while($rs = mysqli_fetch_assoc($result))
     {
       $arr['items'][] = array(
-          'type' => $rs['RoomType'],
+          'typeR' => $rs['RoomType'],
           'count' => $rs['CountRoom'],
-          'RT_ID' => $rs['RT_ID']
+          'RT_ID' => $rs['RT_ID'],          
+          'img' => $rs['img'],          
+          'details' => $rs['details']
       );
     }
     $json = json_encode($arr);
     echo $json;
   }
-  if ($f == "sr"){
+  if ($room == "room"){
     echo SelectRoom();
   }
+
 ?>

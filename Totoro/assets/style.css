@@ -106,6 +106,8 @@ div.selector option{ padding: 10px;}
 /*rooms and tariff*/
 .rooms{margin-bottom: 2em;}
 .rooms .info{padding: 1.5em;background-color: #E8E7E0;}
+.rooms img.img-responsive{width: 600px;height: 400px;}
+
 
 
 .room-features .amenitites li{margin-bottom: 1em;}
