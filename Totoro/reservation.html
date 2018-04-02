@@ -11,8 +11,8 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- bootstrap -->
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
-<!-- uniform 
-<link type="text/css" rel="stylesheet" href="assets/uniform/css/uniform.default.min.css" />-->
+<!-- uniform -->
+<link type="text/css" rel="stylesheet" href="assets/uniform/css/uniform.default.min.css" />
 <!-- animate.css -->
 <link rel="stylesheet" href="assets/wow/animate.css" />
 <!-- gallery -->
@@ -82,13 +82,33 @@
         $("#footer").load("footer.html"); 
     });
 </script>
+<script>
+  var obj;
+  var linkse = window.location.search;
+  var url = 'db.inc/db.select.php'+linkse;
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          obj = JSON.parse(this.responseText);
+          var data = '';
+          data += '<select class="input100" name="roomtype" id="roomtype">';
+          for(var i=0; i<obj.length; i++){
+            data += '<option value="'+obj[i].R_key+'">'+obj[i].R_typeR+'</option>';
+          }
+          data += '</select>';
+          document.getElementById("out").innerHTML = data;
+      }
+  };
+  xmlhttp.open("GET", url + linkse, true);
+  xmlhttp.send();
+</script>
 <div id="header"></div>
 <div class="container-contact100"> 
   <div class="contact100-bg">
     <img src="img/banner.jpg"  class="img-responsive" alt="">
   </div>
   <div class="wrap-contact100">
-    <form action="" method="post" class="contact100-form validate-form">
+    <form action="db.inc/db.inset.php" method="post" class="contact100-form validate-form">
       <span class="contact100-form-title">Room Reservation</span>
       
       <h4>Full Name</h4>
@@ -114,35 +134,25 @@
         <input class="input100" type="text" name="phone" placeholder="Phone">
         <span class="focus-input100"></span>
       </div>
-      
-      <div hidden class="validate-input" data-validate="Please enter room type">
-					<input class="input100" type="text" name="roomtype" placeholder="Room Type">
-      </div>
-      
+
       <h4>Room type</h4>
       <div class="validate-input" data-validate="Please enter room type">
-        <select class="input100" name="roomtype" id="roomtype">
-        <?php
-          $sql = "SELECT * FROM `roomtype`";
-          $result = mysqli_query($conn, $sql);
-          while($rs = mysqli_fetch_assoc($result)) {
-        ?>
-          <option value="<?php echo $rs['RT_ID']; ?>"><?php echo $rs['RoomType']; ?></option>
-        <?php
-          }
-        ?>
-        </select>
+        <div id="out">
+          <select class="input100" name="roomtype" id="roomtype">
+              <option value=""></option>   
+          </select>
+        </div>
         <span class="focus-input100"></span>
       </div>
       
       <h4>Check In</h4>
-      <div class="validate-input" data-validate="Please enter check in">
+      <div class="" data-validate="Please enter check in">
         <input class="input100" type="text" id="date_from" onclick="setSens('date_to', 'max');" readonly="true"  placeholder="Check In">
         <span class="focus-input100"></span>
       </div>
       
       <h4>Check Out</h4>
-      <div class="validate-input" data-validate="Please enter check out">
+      <div class="" data-validate="Please enter check out">
         <input class="input100" type="text" id="date_to" onclick="setSens('date_from', 'min');" readonly="true" placeholder="Check Out">
 				<span class="focus-input100"></span>
       </div>

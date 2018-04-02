@@ -35,7 +35,11 @@
    function SelectRoomType($RT_ID){
     include 'db.conn.inc.php';  
     $room = array();
-    $query = "SELECT  rt.* FROM roomtype rt WHERE rt.RT_ID = '".$RT_ID."'";
+    $query = "SELECT  rt.* FROM roomtype rt WHERE 1 ";
+    if(!empty($RT_ID)){
+      $query .= "and rt.RT_ID = '".$RT_ID."'";
+    }
+    $query .= "Order by rt.RT_ID";
     $result = mysqli_query($conn, $query) or die (mysqli_error());
     //$rs = mysqli_fetch_assoc($result); 
     while($rs = mysqli_fetch_array($result))
