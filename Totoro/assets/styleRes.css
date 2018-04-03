@@ -85,6 +85,9 @@ input.input100, select.input100 {
   height: 40px;
   padding: 0 20px 0 23px;
 }
+input.invalid {
+  background-color: #ffdddd;
+}
 
 /**Focus Input**/
 
