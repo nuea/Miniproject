@@ -164,7 +164,39 @@
                 </div>
                 <span class="focus-input100"></span>
                 </div>
-                
+
+                <!-- room chrck -->
+                <div class="cc-selector">
+                    <ul>
+                        <li>
+                            <h5>RS101</h5>
+                            <input type="checkbox" id="cb1" />
+                            <label for="cb1"><img src="http://lorempixel.com/100/100" /></label>
+                        </li>
+                        <li>
+                            <h5>RS102</h5>
+                            <input type="checkbox" id="cb2" />
+                            <label for="cb2"><img src="http://lorempixel.com/101/101" /></label>
+                        </li>
+                        <li>
+                            <h5>RS103</h5>
+                            <input type="checkbox" id="cb3" />
+                            <label for="cb3"><img src="http://lorempixel.com/102/102" /></label>
+                        </li>
+                        <li>
+                            <h5>RS104</h5>
+                            <input type="checkbox" id="cb4" />
+                            <label for="cb4"><img src="http://lorempixel.com/103/103" /></label>
+                        </li>
+                        <li>
+                            <h5>RS105</h5>
+                            <input type="checkbox" id="cb5" />
+                            <label for="cb5"><img src="http://lorempixel.com/104/104" /></label>
+                        </li>
+                    </ul>
+                </div>
+                <!-- end room chrck -->
+            
                 <h4>Check In</h4>
                 <div class="" data-validate="Please enter check in">
                     <input class="input100" type="text" id="date_from" onclick="setSens('date_to', 'max');" readonly="true"  placeholder="Check In">
@@ -207,72 +239,8 @@
 
 <div id="footer"></div>
 
-<script>
-    var currentTab = 0;
-    showTab(currentTab); 
-    function showTab(n) {
-        var x = document.getElementsByClassName("tab");
-        x[n].style.display = "block";
-        if (n == 0) {
-            document.getElementById("prevBtn").style.display = "none";            
-            document.getElementById("fsubmit").style.display = "none";
-        }
-        else if (n == (x.length - 1)) {
-            document.getElementById("fsubmit").style.display= "inline";            
-            document.getElementById("nextBtn").style.display = 'none';            
-            document.getElementById("prevBtn").style.display = "none";
-        } 
-        else {
-            document.getElementById("prevBtn").style.display = "inline";      
-        }
-
-        fixStepIndicator(n)
-    }
-
-    function nextPrev(n) {
-        var x = document.getElementsByClassName("tab");
-        if (n == 1 && !validateForm()) return false;
-        x[currentTab].style.display = "none";
-        currentTab = currentTab + n;
-        if (currentTab >= x.length) {
-            document.getElementById("regForm").submit();
-            return false;
-        }
-        showTab(currentTab);
-    }
-
-    function validateForm() {
-        var x, y, i, valid = true;
-        x = document.getElementsByClassName("tab");
-        y = x[currentTab].getElementsByTagName("input");
-        // A loop that checks every input field in the current tab:
-        for (i = 0; i < y.length; i++) {
-            // If a field is empty...
-            if (y[i].value == "") {
-            // add an "invalid" class to the field:
-            y[i].className += " invalid";
-            // and set the current valid status to false
-            valid = false;
-            }
-        }
-        if (valid) {
-            document.getElementsByClassName("step")[currentTab].className += " finish";
-        }
-        return valid; 
-    }
-
-    function fixStepIndicator(n) {
-        var i, x = document.getElementsByClassName("step");
-        for (i = 0; i < x.length; i++) {
-            x[i].className = x[i].className.replace(" active", "");
-        }
-        x[n].className += " active";
-    }
-</script>
-
-
-
 <script src="assets/jquery.js"></script>
+<script src="assets/step.js"></script>
 
 <!-- wow script -->
 <script src="assets/wow/wow.min.js"></script>
