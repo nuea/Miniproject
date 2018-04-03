@@ -1,7 +1,7 @@
 <?php
- 
   $room = $_GET["room"];
-  /* select room */ 
+  
+  /*********** function select room ***********/ 
   function JoinRoom()
   {
     include 'db.conn.inc.php';
@@ -12,7 +12,7 @@
       'img' => 'img room',
       'details' => 'details room',
       'items' => array()
- );
+     );
     $query = "SELECT COUNT(r.RT_ID) AS CountRoom, rt.* FROM roomtype rt 
     LEFT JOIN room r ON rt.RT_ID = r.RT_ID GROUP BY r.RT_ID ORDER BY rt.RT_ID ";
     $result = mysqli_query($conn,$query);
@@ -29,10 +29,10 @@
     $json = json_encode($arr);
     echo $json;
   }
-  /* end select room */
+  /*********** end function select room ***********/
 
-   /* Select Room Type */ 
-   function SelectRoomType($RT_ID){
+  /*********** function Select Room Type ***********/ 
+  function SelectRoomType($RT_ID){
     include 'db.conn.inc.php';  
     $room = array();
     $query = "SELECT  rt.* FROM roomtype rt WHERE 1 ";
@@ -56,7 +56,8 @@
     }
     $json = json_encode($room);
     echo $json;
-   }
+  }
+  /*********** function Select Room Type ***********/
 
   if ($room == "room"){
     echo JoinRoom();
