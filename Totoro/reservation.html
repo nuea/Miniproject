@@ -109,42 +109,47 @@
             obj = JSON.parse(this.responseText);
             var data = '';
             data += '<select class="input100" name="roomtype" id="roomtype" onchange="changeroom(this);">';
+            data += '<option value="">Please select room type.</option>';
             for(var i=0; i<obj.length; i++){
                 data += '<option value="'+obj[i].R_key+'">'+obj[i].R_typeR+'</option>';
             }
             data += '</select>';
             document.getElementById("out").innerHTML = data;
         }
+    document.getElementById("showRoom").style.display = "none";
     };
-    xmlhttp.open("GET", "db.inc/db.select.php?room=room&ng=ng", true);
+    xmlhttp.open("GET", "db.inc/db.select.php?room=roomtype&RT_ID=", true);
     xmlhttp.send();
 
-   /* function changeroom(opt){
-        var val = opt.options[opt.selectedIndex].value;
-        alert("value in js "+val);
-        var optVal = '&keyroom='+val;
-        var urlall = url + optVal
-        document.getElementById("demo").innerHTML = urlall;
 
-        var xmlhttpt = new XMLHttpRequest();
-        xmlhttpt.onreadystatechange = function() {
+    function changeroom(opt){
+        document.getElementById("showRoom").style.display = "block";
+        var val = opt.options[opt.selectedIndex].value;
+        var optVal = '?room=roomres&RT_ID='+val;
+        var urlall = url + optVal
+       // document.getElementById("demo").innerHTML = urlall;
+        var out;
+        var xmlhttpreq = new XMLHttpRequest();
+        xmlhttpreq.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                obj = JSON.parse(this.responseText);
+                out = JSON.parse(this.responseText);
                 var data = '';
-                data += '<select class="input100" name="roomtype" id="roomtype" onchange="changeroom(this);">';
-                for(var i=0; i<obj.length; i++){
-                    data += '<option value="'+obj[i].R_key+'">'+obj[i].R_typeR+'</option>';
+                data += '<div class="cc-selector"><h4>Select Room ID:</h4><ul>';
+                for(var i=0; i<out.length; i++){
+                    data += '<li><h4>'+out[i].r_id+'</h4>';
+                    data += '<input type="checkbox" id="cb'+(i+1)+'" name="idroom" value="'+out[i].r_key+'"/>';
+                    data += '<label for="cb'+(i+1)+'"><img src="img/room/Deluxe_Suite.jpg" /></label></li>';
                 }
-                data += '</select>';
-                document.getElementById("out").innerHTML = data;
+                data += '</ul></div>';
+                document.getElementById("showRoom").innerHTML = data;
             }
         };
-        xmlhttpt.open("GET", urlall, true);
-        xmlhttpt.send();
-    }*/
+        xmlhttpreq.open("GET", urlall, true);
+        xmlhttpreq.send();
+    }
 </script>
+
 <div id="demo"></div>
-<div id="demo2"></div>
 <div id="header"></div>
 <div class="container-contact100"> 
     <div class="contact100-bg">
@@ -191,38 +196,10 @@
                 <span class="focus-input100"></span>
                 </div>
 
-                <!-- room chrck -->
-                <div class="cc-selector">
-                <h4>Select Room ID:</h4>
-                    <ul>
-                        <li>
-                            <h4><b>RS101</b></h4>
-                            <input type="checkbox" id="cb1" />
-                            <label for="cb1"><img src="http://lorempixel.com/100/100" /></label>
-                        </li>
-                        <li>
-                            <h4><b>RS102</b></h4>
-                            <input type="checkbox" id="cb2" />
-                            <label for="cb2"><img src="http://lorempixel.com/101/101" /></label>
-                        </li>
-                        <li>
-                            <h4><b>RS103</b></h4>
-                            <input type="checkbox" id="cb3" />
-                            <label for="cb3"><img src="http://lorempixel.com/102/102" /></label>
-                        </li>
-                        <li>
-                            <h4><b>RS104</b></h4>
-                            <input type="checkbox" id="cb4" />
-                            <label for="cb4"><img src="http://lorempixel.com/103/103" /></label>
-                        </li>
-                        <li>
-                            <h4><b>RS105</b></h4>
-                            <input type="checkbox" id="cb5" />
-                            <label for="cb5"><img src="http://lorempixel.com/104/104" /></label>
-                        </li>
-                    </ul>
+                
+                <div id="showRoom">
+                    <!-- show room chrck -->
                 </div>
-                <!-- end room chrck -->
             
                 <h4>Check In</h4>
                 <div class="" data-validate="Please enter check in">
@@ -238,8 +215,21 @@
             </div>
 
             <div class="tab">
-                <h4>Booking details</h4>
-                
+                <h3><u>Booking details</u></h3>
+                <p><h4>Guest Details:</h4></p>
+                <div>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;Full name:</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;ID Card:</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;E-mail:</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;Phone:</p>
+                </div>
+                <p><h4>Room Type:</h4></p>
+                <div>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;ID Room:</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;Price Room:</p>
+                </div>
+                <p><h4>Check In:</h4></p>
+                <p><h4>Check Out:</h4></p>
             </div>
 
             <div style="overflow:auto;">

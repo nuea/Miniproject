@@ -1,4 +1,5 @@
 <?php
+  /** get value **/
   $room = $_GET["room"];
   
   /*********** function select room ***********/ 
@@ -21,11 +22,11 @@
     while($rs = mysqli_fetch_assoc($result))
     {
       $arr['items'][] = array(
-          'typeR' => $rs['RoomType'],
-          'count' => $rs['CountRoom'],
-          'RT_ID' => $rs['RT_ID'],          
-          'img' => $rs['img'],          
-          'details' => $rs['details']
+        'typeR' => $rs['RoomType'],
+        'count' => $rs['CountRoom'],
+        'RT_ID' => $rs['RT_ID'],          
+        'img' => $rs['img'],          
+        'details' => $rs['details']
       );
     }
     $json = json_encode($arr);
@@ -43,23 +44,44 @@
     }
     $query .= "Order by rt.RT_ID";
     $result = mysqli_query($conn, $query) or die (mysqli_error());
-    //$rs = mysqli_fetch_assoc($result); 
     while($rs = mysqli_fetch_array($result))
     {
       $room[] = array(
-          'R_typeR' => $rs['RoomType'],
-          'R_Des' => $rs['Description'],
-          'R_key' => $rs['RT_ID'],          
-          'R_img' => $rs['img'],          
-          'R_details' => $rs['details'],      
-          'R_price' => $rs['PriceRoom'],        
-          'R_size' => $rs['SizeRoom'] 
+        'R_typeR' => $rs['RoomType'],
+        'R_Des' => $rs['Description'],
+        'R_key' => $rs['RT_ID'],          
+        'R_img' => $rs['img'],          
+        'R_details' => $rs['details'],      
+        'R_price' => $rs['PriceRoom'],        
+        'R_size' => $rs['SizeRoom'] 
       );
     }
     $json = json_encode($room);
     echo $json;
   }
-  /*********** function Select Room Type ***********/
+  /*********** end function Select Room Type ***********/
+
+  /*********** function Select Room ***********/
+  function SelectRoom($RT_ID){
+    include 'db.conn.inc.php';  
+    $room = array();
+    $query = "SELECT * FROM room WHERE 1 ";
+    if(!empty($RT_ID)){
+      $query .= "and RT_ID = '".$RT_ID."'";
+    }
+    $query .= "Order by IDRoom";
+    $result = mysqli_query($conn, $query) or die (mysqli_error());
+    while($rs = mysqli_fetch_array($result)){
+      $room[] = array(
+        'r_key' => $rs['Room_Key'],
+        'r_id' => $rs['IDRoom'],
+        'r_RT_ID' => $rs['RT_ID']
+      );
+    }
+    $json = json_encode($room);
+    echo $json;
+  }
+  /*********** end function Select Room ***********/
 
   if ($room == "room"){
     echo JoinRoom();
@@ -68,4 +90,11 @@
     $RT_ID = $_GET["RT_ID"]; 
     echo SelectRoomType($RT_ID);
   }
+  else if($room == "roomres"){
+    $RT_ID = $_GET["RT_ID"]; 
+    if(empty($RT_ID)){
+      $RT_ID = 1;
+    }
+    echo SelectRoom($RT_ID);
+  }/**/
 ?>

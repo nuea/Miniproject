@@ -457,8 +457,8 @@ button:hover {
   }
   
   label img {
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
     transition-duration: 0.2s;
     transform-origin: 50% 50%;
   }
@@ -469,7 +469,7 @@ button:hover {
   
   :checked + label:before {
     content: "✓";
-    background-color: grey;
+    background-color: rgb(11, 109, 14);
     transform: scale(1);
   }
   
@@ -478,3 +478,4 @@ button:hover {
     box-shadow: 0 0 5px #333;
     z-index: 0;
   }
+  /*** end room check ***/
