@@ -1,7 +1,7 @@
 /******************** end calendar ********************/
 var myCalendar;
 function doOnLoad() {
-    var today = new Date();
+ var today = new Date();
     var nextday = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
