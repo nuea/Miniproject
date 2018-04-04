@@ -62,7 +62,7 @@
   /*********** end function Select Room Type ***********/
 
   /*********** function Select Room ***********/
-  function SelectRoom($RT_ID){
+  function ChooseRoom($RT_ID){
     include 'db.conn.inc.php';  
     $room = array();
     $query = "SELECT * FROM room WHERE 1 ";
@@ -90,11 +90,11 @@
     $RT_ID = $_GET["RT_ID"]; 
     echo SelectRoomType($RT_ID);
   }
-  else if($room == "roomres"){
+  else if($room == "chooroom"){
     $RT_ID = $_GET["RT_ID"]; 
     if(empty($RT_ID)){
       $RT_ID = 1;
     }
-    echo SelectRoom($RT_ID);
+    echo ChooseRoom($RT_ID);
   }/**/
 ?>

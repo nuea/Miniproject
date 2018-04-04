@@ -116,16 +116,14 @@
             data += '</select>';
             document.getElementById("out").innerHTML = data;
         }
-    document.getElementById("showRoom").style.display = "none";
     };
     xmlhttp.open("GET", "db.inc/db.select.php?room=roomtype&RT_ID=", true);
     xmlhttp.send();
 
 
     function changeroom(opt){
-        document.getElementById("showRoom").style.display = "block";
         var val = opt.options[opt.selectedIndex].value;
-        var optVal = '?room=roomres&RT_ID='+val;
+        var optVal = '?room=chooroom&RT_ID='+val;
         var urlall = url + optVal
        // document.getElementById("demo").innerHTML = urlall;
         var out;
@@ -198,7 +196,7 @@
 
                 
                 <div id="showRoom">
-                    <!-- show room chrck -->
+                    <!-- show room chrck -->                   
                 </div>
             
                 <h4>Check In</h4>
