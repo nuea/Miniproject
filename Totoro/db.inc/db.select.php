@@ -62,7 +62,7 @@
   /*********** end function Select Room Type ***********/
 
   /*********** function Select Room ***********/
-  function ChooseRoom($RT_ID){
+  function ChooseRoom($RT_ID,$cin,$cout){
     include 'db.conn.inc.php';  
     $room = array();
     $query = "SELECT * FROM room WHERE 1 ";
@@ -71,30 +71,74 @@
     }
     $query .= "Order by IDRoom";
     $result = mysqli_query($conn, $query) or die (mysqli_error());
-    while($rs = mysqli_fetch_array($result)){
+
+    $sql = "SELECT Room_Key FROM reservation WHERE ((`CheckIn` >= '".$cin."' AND `CheckIn` <= '".$cout."') 
+    or (`CheckOut` >= '".$cin."' AND `CheckOut` <= '".$cout."')) AND `CheckOut` != '".$cin."'";
+    $res = mysqli_query($conn, $sql) or die (mysqli_error());
+    $valroom = mysqli_fetch_array($res);
+
+    while($rs = mysqli_fetch_array($result))
+    {
+      $status=0;
+      foreach( $valroom as $value ) 
+      {
+        if($value==$rs['Room_Key']){
+          $status=1;
+        }
+      }
       $room[] = array(
-        'r_key' => $rs['Room_Key'],
-        'r_id' => $rs['IDRoom'],
-        'r_RT_ID' => $rs['RT_ID']
-      );
+          'r_key' => $rs['Room_Key'],
+          'r_id' => $rs['IDRoom'],
+          'r_RT_ID' => $rs['RT_ID'],
+          'r_status' => $status,
+        );
     }
+    $data=0;
+
+    
+
+
     $json = json_encode($room);
     echo $json;
   }
   /*********** end function Select Room ***********/
 
+
+  /****** CheckDate *******/
+  function active($cin,$cout){
+    include 'db.conn.inc.php';
+    $data=0;
+    $query = "SELECT * FROM reservation WHERE ((`CheckIn` >= '".$cin."' AND `CheckIn` <= '".$cout."') 
+    or (`CheckOut` >= '".$cin."' AND `CheckOut` <= '".$cout."')) AND `CheckOut` != '".$cin."'";
+    $result = mysqli_query($conn, $query) or die (mysqli_error());
+    $rsCheck = mysqli_num_rows($result);
+    if($rsCheck!=0){
+      $data = 1;
+    }
+    echo $data;
+  }
+
+  /****** end CheckDate *******/
+
   if ($room == "room"){
-    echo JoinRoom();
+    JoinRoom();
   }
   else if ($room == "roomtype"){
     $RT_ID = $_GET["RT_ID"]; 
-    echo SelectRoomType($RT_ID);
+    SelectRoomType($RT_ID);
   }
   else if($room == "chooroom"){
     $RT_ID = $_GET["RT_ID"]; 
+    $cin = $_GET["cin"];
+    $cout = $_GET["cout"];
     if(empty($RT_ID)){
       $RT_ID = 1;
     }
-    echo ChooseRoom($RT_ID);
-  }/**/
+    ChooseRoom($RT_ID,$cin,$cout);
+  }
+  else if ($room == "ckdate"){
+    $cin = $_GET["cin"];
+    $cout = $_GET["cout"];
+    active($cin,$cout);
+  }
 ?>

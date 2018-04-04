@@ -65,7 +65,10 @@ xmlhttp.send();
 /******************** room ********************/
 function changeroom(opt){
     var val = opt.options[opt.selectedIndex].value;
-    var optVal = '?room=chooroom&RT_ID='+val;
+    var cin,cout;
+    cin = document.getElementById("date_from").value;
+    cout = document.getElementById("date_to").value;
+    var optVal = '?room=chooroom&RT_ID='+val+'&cin='+cin+'&cout='+cout;
     var urlall = url + optVal
    // document.getElementById("demo").innerHTML = urlall;
     var out;
@@ -76,7 +79,11 @@ function changeroom(opt){
             var data = '';
             data += '<div class="cc-selector"><h4>Select Room ID:</h4><ul>';
             for(var i=0; i<out.length; i++){
-                data += '<li><h4>'+out[i].r_id+'</h4>';
+                if(out[i].r_status==1){
+                    data += '<li><h4>'+out[i].r_id+'Not null</h4>';
+                }else{
+                    data += '<li><h4>'+out[i].r_id+'</h4>';
+                }
                 data += '<input type="checkbox" id="cb'+(i+1)+'" name="idroom" value="'+out[i].r_key+'" onclick="myroom();"/>';
                 data += '<label for="cb'+(i+1)+'"><img src="img/room/Deluxe_Suite.jpg" /></label></li>';
             }
@@ -94,7 +101,23 @@ function CheckDate(){
     var cin,cout;
     cin = document.getElementById("date_from").value;
     cout = document.getElementById("date_to").value;
-    document.getElementById("demo").innerHTML = cin + " " +cout;
+    var optVal = 'db.inc/db.select.php?room=ckdate&cin='+cin+"&cout="+cout;
+    document.getElementById("demo").innerHTML = optVal;
+    var out;
+    var xmlhttpreq = new XMLHttpRequest();
+    xmlhttpreq.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            out = this.responseText;
+            var data = '';
+            if(out==1){
+                
+            document.getElementById("showRoom").innerHTML = data;
+            }
+        }
+    };
+    xmlhttpreq.open("GET", optVal, true);
+    xmlhttpreq.send();
+    //document.getElementById("demo").innerHTML = cin + " " +cout;
 }
 /******************** end time ********************/
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2018 at 06:18 PM
+-- Generation Time: Apr 04, 2018 at 08:16 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -36,43 +36,12 @@ CREATE TABLE `customer` (
   `Phone` varchar(30) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `mannageroom`
+-- Dumping data for table `customer`
 --
 
-CREATE TABLE `mannageroom` (
-  `Room_Key` int(11) NOT NULL,
-  `Status` enum('ON','OFF','BOOK') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'OFF',
-  `LastTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `mannageroom`
---
-
-INSERT INTO `mannageroom` (`Room_Key`, `Status`, `LastTime`) VALUES
-(1, 'OFF', '2018-04-02 15:52:36'),
-(2, 'OFF', '2018-04-02 15:52:36'),
-(3, 'OFF', '2018-04-02 15:52:36'),
-(4, 'OFF', '2018-04-02 15:52:36'),
-(5, 'OFF', '2018-04-02 15:52:36'),
-(6, 'OFF', '2018-04-02 15:52:36'),
-(7, 'OFF', '2018-04-02 15:52:36'),
-(8, 'OFF', '2018-04-02 15:52:36'),
-(9, 'OFF', '2018-04-02 15:52:36'),
-(10, 'OFF', '2018-04-02 15:52:36'),
-(11, 'OFF', '2018-04-02 15:52:36'),
-(12, 'OFF', '2018-04-02 15:52:36'),
-(13, 'OFF', '2018-04-02 15:52:36'),
-(14, 'OFF', '2018-04-02 15:52:36'),
-(15, 'OFF', '2018-04-02 15:52:36'),
-(16, 'OFF', '2018-04-02 15:52:36'),
-(17, 'OFF', '2018-04-02 15:52:36'),
-(18, 'OFF', '2018-04-02 15:52:36'),
-(19, 'OFF', '2018-04-02 15:52:36'),
-(20, 'OFF', '2018-04-02 15:52:36');
+INSERT INTO `customer` (`Cus_ID`, `Cus_IDCard`, `FullName`, `Email`, `Phone`) VALUES
+(1, 2147483647, 'Miki   Frog', 'miki@gmail.com', '021354789');
 
 -- --------------------------------------------------------
 
@@ -82,12 +51,19 @@ INSERT INTO `mannageroom` (`Room_Key`, `Status`, `LastTime`) VALUES
 
 CREATE TABLE `reservation` (
   `Res_ID` int(11) NOT NULL,
-  `Cus_ID` int(11) NOT NULL,
-  `Room_ID` int(11) NOT NULL,
-  `ChechIn` datetime NOT NULL,
-  `CheckOut` datetime NOT NULL,
+  `Cus_IDCard` int(11) NOT NULL,
+  `Room_Key` int(11) NOT NULL,
+  `CheckIn` date NOT NULL,
+  `CheckOut` date NOT NULL,
   `Price` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`Res_ID`, `Cus_IDCard`, `Room_Key`, `CheckIn`, `CheckOut`, `Price`) VALUES
+(1, 2147483647, 11, '2018-04-06', '2018-04-08', 5800);
 
 -- --------------------------------------------------------
 
@@ -189,13 +165,13 @@ ALTER TABLE `roomtype`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `Cus_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Cus_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `Res_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Res_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `room`
