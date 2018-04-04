@@ -50,52 +50,36 @@
         <img src="img/banner.jpg"  class="img-responsive" alt="">
     </div>
     <div class="wrap-contact100">
-        <form action="db.inc/db.inset.php" method="post" class="contact100-form validate-form">
+        <form action="db.inc/db.inset.php" id="regForm" method="post" class="contact100-form validate-form">
             <span class="contact100-form-title">Room Reservation</span>
             
             <div class="tab">
                 <h4>Full Name</h4>
                 <div class="validate-input" data-validate="Please enter your name">
-                    <input class="input100" type="text" name="name" placeholder="Full Name">
+                    <input class="input100" type="text" name="name" id="name" placeholder="Full Name">
                     <span class="focus-input100"></span>
                 </div>
                 
                 <h4>ID CARD</h4>
                 <div class="validate-input" data-validate="Please enter id card">
-                    <input class="input100" type="text" name="idcard" placeholder="ID CARD">
+                    <input class="input100" type="text" name="idcard" id="idcard" placeholder="ID CARD">
                     <span class="focus-input100"></span>
                 </div>
 
                 <h4>E-mail</h4>
                 <div class="validate-input" data-validate="Please enter email: e@a.x">
-                    <input class="input100" type="text" name="email" placeholder="E-mail">
+                    <input class="input100" type="text" name="email" id="email" placeholder="E-mail">
                     <span class="focus-input100"></span>
                 </div>
                 
                 <h4>Phone</h4>
                 <div class="validate-input" data-validate="Please enter phone">
-                    <input class="input100" type="text" name="phone" placeholder="Phone">
+                    <input class="input100" type="text" name="phone" id="phone" placeholder="Phone">
                     <span class="focus-input100"></span>
                 </div>
             </div>
 
-            <div class="tab">
-                <h4>Room type</h4>
-                <div class="validate-input" data-validate="Please enter room type">
-                <div id="out">
-                    <select class="input100" name="" id="">
-                        <option value=""></option>   
-                    </select>
-                </div>
-                <span class="focus-input100"></span>
-                </div>
-
-                
-                <div id="showRoom">
-                    <!-- show room chrck -->                   
-                </div>
-            
-                <h4>Check In</h4>
+            <div class="tab"><h4>Check In</h4>
                 <div class="" data-validate="Please enter check in">
                     <input class="input100" type="text" name="date_from" id="date_from" onclick="setSens('date_to', 'max');" readonly="true"  placeholder="Check In">
                     <span class="focus-input100"></span>
@@ -106,24 +90,48 @@
                     <input class="input100" type="text" name="date_to" id="date_to" onclick="setSens('date_from', 'min');" readonly="true" placeholder="Check Out">
                     <span class="focus-input100"></span>
                 </div>
+
+                <div>
+                    <div class="container-contact100-form-btn">
+                        <button class="contact100-form-btn" id="" type="submit" onclick="CheckDate();">Check Date</button>
+                    </div>
+                </div>
+
+                <h4>Room type</h4>
+                <div class="validate-input" data-validate="Please enter room type">
+                <div id="out">
+                    <select class="input100" name="r_type" id="r_type">
+                        <option value=""></option>   
+                    </select>
+                    <p><h3>Price: THB</h3></p>
+                </div>
+                <span class="focus-input100"></span>
+                </div>           
+                
+                <div id="showRoom">
+                    <!-- show room chrck -->                   
+                </div>
             </div>
 
             <div class="tab">
-                <h3><u>Booking details</u></h3>
-                <p><h4>Guest Details:</h4></p>
-                <div>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;Full name:</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;ID Card:</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;E-mail:</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;Phone:</p>
+                <div id="bookdetail">
+                   <h3><u>Booking details</u></h3>
+                    <p><h4>Guest Details:</h4></p>
+                    <div>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;Full name:</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;ID Card:</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;E-mail:</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;Phone:</p>
+                    </div>
+                    <p><h4>Room Type:</h4></p>
+                    <div>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;ID Room:</p>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;Price Room:</p>
+                    </div>
+                    <p><h4>Check In:</h4></p>
+                    <p><h4>Check Out:</h4></p> 
                 </div>
-                <p><h4>Room Type:</h4></p>
-                <div>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;ID Room:</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;Price Room:</p>
-                </div>
-                <p><h4>Check In:</h4></p>
-                <p><h4>Check Out:</h4></p>
+                
             </div>
 
             <div style="overflow:auto;">
@@ -133,7 +141,7 @@
                     <button type="button" id="nextBtn" onclick="nextPrev(1)" class="contact100-form-btn-green">NEXT</button>
                 </div>
                 <div class="container-contact100-form-btn">
-                    <button class="contact100-form-btn" id="fsubmit" type="submit">CONFIRE&nbsp;&nbsp;BOOKING</button>
+                    <button class="contact100-form-btn" id="fsubmit" type="submit" onclick="document.getElementById('regForm').submit();">CONFIRE&nbsp;&nbsp;BOOKING</button>
                 </div>
             </div>
             <!-- Circles which indicates the steps of the form: -->

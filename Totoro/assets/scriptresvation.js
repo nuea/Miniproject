@@ -49,7 +49,7 @@ xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         obj = JSON.parse(this.responseText);
         var data = '';
-        data += '<select class="input100" name="roomtype" id="roomtype" onchange="changeroom(this);">';
+        data += '<select class="input100" name="r_type" id="r_type" onchange="changeroom(this);">';
         data += '<option value="">Please select room type.</option>';
         for(var i=0; i<obj.length; i++){
             data += '<option value="'+obj[i].R_key+'">'+obj[i].R_typeR+'</option>';
@@ -77,10 +77,10 @@ function changeroom(opt){
             data += '<div class="cc-selector"><h4>Select Room ID:</h4><ul>';
             for(var i=0; i<out.length; i++){
                 data += '<li><h4>'+out[i].r_id+'</h4>';
-                data += '<input type="checkbox" id="cb'+(i+1)+'" name="idroom" value="'+out[i].r_key+'"/>';
+                data += '<input type="checkbox" id="cb'+(i+1)+'" name="idroom" value="'+out[i].r_key+'" onclick="myroom();"/>';
                 data += '<label for="cb'+(i+1)+'"><img src="img/room/Deluxe_Suite.jpg" /></label></li>';
             }
-            data += '</ul></div>';
+            data += '</ul><input type="text" id="id_R" value=""><input type="text" id="id_roomty" value="'+val+'"></div>';
             document.getElementById("showRoom").innerHTML = data;
         }
     };
@@ -90,5 +90,23 @@ function changeroom(opt){
 /******************** end room ********************/
 
 /******************** time ********************/
-
+function CheckDate(){
+    var cin,cout;
+    cin = document.getElementById("date_from").value;
+    cout = document.getElementById("date_to").value;
+    document.getElementById("demo").innerHTML = cin + " " +cout;
+}
 /******************** end time ********************/
+
+
+function myroom() {
+    var idroom = document.forms[0];
+    var txt = "";
+    var i;
+    for (i = 0; i < idroom.length; i++) {
+        if (idroom[i].checked) {
+            txt = txt + idroom[i].value + ";";
+        }
+    }
+    document.getElementById("id_R").value = "id room: " + txt;
+}

@@ -1,5 +1,19 @@
 <?php
-  if(isset($_POST['submit']))
+
+$name=$_POST["name"];
+$idcard=$_POST["idcard"];
+$email=$_POST["email"];
+$phone=$_POST["phone"];
+$date_from=$_POST["date_from"];
+$date_to=$_POST["date_to"];
+$r_type=$_POST["r_type"];
+$idroom=$_POST["idroom"];
+$checkin=$_POST["checkin"];
+$checkout=$_POST["checkout"];
+echo $name." ".$idcard." ".$email." ".$phone." ".$date_from." ".$date_to." ".$r_type." ".$idroom." ".$checkin." ".$checkout;
+exit();
+
+ /* if(isset($_POST['submit']))
   {
     include 'db.inc/dbc.conn.inc.php';
     $name=$_POST["name"];
@@ -28,5 +42,5 @@
       header("Location: ../reservation.php");
       exit();
     }
-  }
+  }*/
 ?>
