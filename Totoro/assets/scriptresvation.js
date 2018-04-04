@@ -80,7 +80,7 @@ function changeroom(opt){
                 data += '<input type="checkbox" id="cb'+(i+1)+'" name="idroom" value="'+out[i].r_key+'" onclick="myroom();"/>';
                 data += '<label for="cb'+(i+1)+'"><img src="img/room/Deluxe_Suite.jpg" /></label></li>';
             }
-            data += '</ul><input type="hidden" id="id_R" value=""><input type="hidden" id="id_roomty" value="'+val+'"></div>';
+            data += '</ul><input type="hidden" id="id_R" value=""><input type="hidden" id="id_rty" value="'+val+'"></div>';
             document.getElementById("showRoom").innerHTML = data;
         }
     };
