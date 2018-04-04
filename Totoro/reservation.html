@@ -24,70 +24,14 @@
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="assets/styleRes.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-	<!-- ===== calendar ===== -->
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<link rel="stylesheet" type="text/css" href="codebase/fonts/font_roboto/roboto.css"/>
-	<link rel="stylesheet" type="text/css" href="codebase/dhtmlxcalendar.css"/>
-	<script src="codebase/dhtmlxcalendar.js"></script>
-	<style>
-	/*	input#date_from, input#date_to {
-			border: 1px solid #dfdfdf;
-			font-family: Roboto, Arial, Helvetica;
-			font-size: 14px;
-			color: #404040;
-			background-color: #fafafa;
-			border: #c0c0c0 1px solid;
-			width: 100px;
-		}
-		span.label {
-			font-family: Roboto, Arial, Helvetica;
-			font-size: 14px;
-			color: #404040;
-		}*/
-	</style>
-	<script>
-		var myCalendar;
-		function doOnLoad() {
-      var today = new Date();
-      var nextday = new Date();
-      var dd = today.getDate();
-      var mm = today.getMonth()+1; //January is 0!
-      var yyyy = today.getFullYear();      
-      var nd = nextday.getDate()+2;
-      if(dd<10){
-        dd='0'+dd;
-      } 
-      if(mm<10){
-        mm='0'+mm;
-      }
-      if(nd<10){
-        nd='0'+nd;
-      } 
-      var today = yyyy+'-'+mm+'-'+dd;
-      var nextday = yyyy+'-'+mm+'-'+nd;
-			myCalendar = new dhtmlXCalendarObject(["date_from","date_to"]);
-			myCalendar.setDate("2018-04-10");
-			myCalendar.hideTime();
-			// init values
-			var t = new Date();
-			byId("date_from").value = today;
-			byId("date_to").value = nextday;
-		}
-		
-		function setSens(id, k) {
-			// update range
-			if (k == "min") {
-				myCalendar.setSensitiveRange(byId(id).value, null);
-			} else {
-				myCalendar.setSensitiveRange(null, byId(id).value);
-			}
-		}
-		function byId(id) {
-			return document.getElementById(id);
-		}
-	</script>
-	<!-- ===== calendar ===== -->
+
+<!-- ===== calendar ===== -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<link rel="stylesheet" type="text/css" href="codebase/fonts/font_roboto/roboto.css"/>
+<link rel="stylesheet" type="text/css" href="codebase/dhtmlxcalendar.css"/>
+<script src="codebase/dhtmlxcalendar.js"></script>
+<!-- ===== calendar ===== -->
 </head>
 
 <body id="home" onload="doOnLoad();">
@@ -99,54 +43,6 @@
         $("#footer").load("footer.html"); 
     });
 </script>
-<script>
-    var obj;
-    var linkse = window.location.search;
-    var url = 'db.inc/db.select.php'+ linkse;
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            obj = JSON.parse(this.responseText);
-            var data = '';
-            data += '<select class="input100" name="roomtype" id="roomtype" onchange="changeroom(this);">';
-            data += '<option value="">Please select room type.</option>';
-            for(var i=0; i<obj.length; i++){
-                data += '<option value="'+obj[i].R_key+'">'+obj[i].R_typeR+'</option>';
-            }
-            data += '</select>';
-            document.getElementById("out").innerHTML = data;
-        }
-    };
-    xmlhttp.open("GET", "db.inc/db.select.php?room=roomtype&RT_ID=", true);
-    xmlhttp.send();
-
-
-    function changeroom(opt){
-        var val = opt.options[opt.selectedIndex].value;
-        var optVal = '?room=chooroom&RT_ID='+val;
-        var urlall = url + optVal
-       // document.getElementById("demo").innerHTML = urlall;
-        var out;
-        var xmlhttpreq = new XMLHttpRequest();
-        xmlhttpreq.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                out = JSON.parse(this.responseText);
-                var data = '';
-                data += '<div class="cc-selector"><h4>Select Room ID:</h4><ul>';
-                for(var i=0; i<out.length; i++){
-                    data += '<li><h4>'+out[i].r_id+'</h4>';
-                    data += '<input type="checkbox" id="cb'+(i+1)+'" name="idroom" value="'+out[i].r_key+'"/>';
-                    data += '<label for="cb'+(i+1)+'"><img src="img/room/Deluxe_Suite.jpg" /></label></li>';
-                }
-                data += '</ul></div>';
-                document.getElementById("showRoom").innerHTML = data;
-            }
-        };
-        xmlhttpreq.open("GET", urlall, true);
-        xmlhttpreq.send();
-    }
-</script>
-
 <div id="demo"></div>
 <div id="header"></div>
 <div class="container-contact100"> 
@@ -255,6 +151,8 @@
 
 <script src="assets/jquery.js"></script>
 <script src="assets/step.js"></script>
+<script src="assets/scriptresvation.js"></script>
+
 
 <!-- wow script -->
 <script src="assets/wow/wow.min.js"></script>
