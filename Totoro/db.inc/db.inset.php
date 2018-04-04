@@ -8,9 +8,7 @@ $date_from=$_POST["date_from"];
 $date_to=$_POST["date_to"];
 $r_type=$_POST["r_type"];
 $idroom=$_POST["idroom"];
-$checkin=$_POST["checkin"];
-$checkout=$_POST["checkout"];
-echo $name." ".$idcard." ".$email." ".$phone." ".$date_from." ".$date_to." ".$r_type." ".$idroom." ".$checkin." ".$checkout;
+echo $name." ".$idcard." ".$email." ".$phone." ".$date_from." ".$date_to." ".$r_type." ".$idroom;
 exit();
 
  /* if(isset($_POST['submit']))

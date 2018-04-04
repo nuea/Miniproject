@@ -52,7 +52,7 @@ xmlhttp.onreadystatechange = function() {
         data += '<select class="input100" name="r_type" id="r_type" onchange="changeroom(this);">';
         data += '<option value="">Please select room type.</option>';
         for(var i=0; i<obj.length; i++){
-            data += '<option value="'+obj[i].R_key+'">'+obj[i].R_typeR+'</option>';
+            data += '<option value="'+obj[i].R_key+'">Room type: '+obj[i].R_typeR+" ==> Price: "+obj[i].R_price+' THB</option>';
         }
         data += '</select>';
         document.getElementById("out").innerHTML = data;
@@ -80,7 +80,7 @@ function changeroom(opt){
                 data += '<input type="checkbox" id="cb'+(i+1)+'" name="idroom" value="'+out[i].r_key+'" onclick="myroom();"/>';
                 data += '<label for="cb'+(i+1)+'"><img src="img/room/Deluxe_Suite.jpg" /></label></li>';
             }
-            data += '</ul><input type="text" id="id_R" value=""><input type="text" id="id_roomty" value="'+val+'"></div>';
+            data += '</ul><input type="hidden" id="id_R" value=""><input type="hidden" id="id_roomty" value="'+val+'"></div>';
             document.getElementById("showRoom").innerHTML = data;
         }
     };
@@ -108,5 +108,5 @@ function myroom() {
             txt = txt + idroom[i].value + ";";
         }
     }
-    document.getElementById("id_R").value = "id room: " + txt;
+    document.getElementById("id_R").value = txt;
 }

@@ -17,7 +17,7 @@ function showTab(n) {
     }
 
     if (n == (x.length - 2)) {
-        //document.getElementById("nextBtn").innerHTML = "hey!";
+        document.getElementById("nextBtn").innerHTML = "hey!";
         BookingDetails();
     } else {
         document.getElementById("nextBtn").innerHTML = "Next";
@@ -35,7 +35,6 @@ function nextPrev(n) {
     x[currentTab].style.display = "none";
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + n;
-
     // if you have reached the end of the form...
     if (currentTab >= x.length) {
       // ... the form gets submitted:
@@ -76,7 +75,7 @@ function fixStepIndicator(n) {
 
 
 function BookingDetails(){
-    var f_name,id_card,email,phone,cin,cout,r_type,id_R,price;
+    /*var f_name,id_card,email,phone,cin,cout,r_type,id_R,price;
     var info='';
     f_name = document.getElementById("name").value;
     id_card = document.getElementById("idcard").value;
@@ -84,7 +83,7 @@ function BookingDetails(){
     phone = document.getElementById("phone").value;
     cin = document.getElementById("date_from").value;
     cout = document.getElementById("date_to").value;
-    r_type = document.getElementById("r_type").value;
+    r_type = document.getElementById("id_roomtype").value;
     id_room = document.getElementsByName("id_R").value;
     price = document.getElementsByName("price").value;
 
@@ -104,5 +103,5 @@ function BookingDetails(){
     info += '</div>';
     info += '<p><h4>Check In: '+cin+'</h4></p>';
     info += '<p><h4>Check Out: '+cout+'</h4></p> ';
-    document.getElementById("bookdetail").innerHTML = info;
+    document.getElementById("bookdetail").innerHTML = info;*/
 }
