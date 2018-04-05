@@ -53,14 +53,14 @@
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             obj = JSON.parse(this.responseText);
-            document.getElementById("out").innerHTML = '<h1 class="title">'+obj[0].R_typeR+'</h1>';            
-            document.getElementById("outimg").innerHTML = "<div class=\"room_detail\" data-ride=\carousel\"><img src=\"img/room/"+obj[0].R_img+"\" class=\"img-responsive\"></div>";
-            document.getElementById("outtitel").innerHTML = '<div class="col-sm-12 col-md-5"><p>'+obj[0].R_Des+'</p></div>'; 
+            document.getElementById("out").innerHTML = '<h1 class="title">'+obj[0].r_typeR+'</h1>';            
+            document.getElementById("outimg").innerHTML = "<div class=\"rooms\" data-ride=\"carousel\"><img src=\"img/room/"+obj[0].r_img+"\" class=\"img-responsive\"></div>";
+            document.getElementById("outtitel").innerHTML = '<div class="col-sm-12 col-md-5"><p>'+obj[0].r_des+'</p></div>'; 
             var data='',link='';
             data += '<div class="col-sm-3 col-md-2">';
-            data += '<div class="size-price">Size<span>'+obj[0].R_size+'</span></div>';
+            data += '<div class="size-price"><h3>Size</h3><span>'+obj[0].r_size+'</span></div>';
             data += '</div><div class="col-sm-3 col-md-2">';
-            data += '<div class="size-price">Price<span>'+obj[0].R_price+' THB</span></div></div>'; 
+            data += '<div class="size-price"><h3>Price</h3><span>'+obj[0].r_price+' THB</span></div></div>'; 
             document.getElementById("outsizepirce").innerHTML = data;
             link += '<div class="container-contact100-form-btn">';
             link += '<a href="reservation.html" class="contact100-form-btn">Book Now</a></div>';
@@ -76,8 +76,8 @@
 
     <!-- RoomDetails -->
     <div id="outimg">
-        <div class="rooms" data-ride="carousel">
-            <img src="" class="img-responsive">
+        <div class="rooms" data-ride="carousel" >
+            <img src="" class="img-detail">
         </div>
     </div>
     <!-- RoomCarousel-->
@@ -89,14 +89,18 @@
                     <p></p>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3 amenitites"> 
+            <div class="col-sm-6 col-md-4 amenitites"> 
                 <h3>Room Facilities</h3>    
                 <ul>
-                <li>One of the greatest barriers to making the sale is your prospect.</li>
-                <li>Principle to work to make more money while having more fun.</li>
-                <li>Unlucky people. Don't stubbornly.</li>
-                <li>Principle to work to make more money while having more fun.</li>
-                <li>Space in your house How to sell faster than your neighbors</li>
+                    <li>- Air conditioning with individual thermostat control</li>
+                    <li>- Electronic bedside control panel on bedside table</li>
+                    <li>- Build-in wardrobe with clothes hanger</li>
+                    <li>- Dressing table with a mirror and lamp</li>
+                    <li>- Luggage bench and shoes locker</li>
+                    <li>- Refrigerator</li>
+                    <li>- LCD TV with cable programs</li>
+                    <li>- Free Wi-Fi</li>
+                    <li>- Bathrobe and slippers</li>
                 </ul>
             </div>  
             <div id="outsizepirce">

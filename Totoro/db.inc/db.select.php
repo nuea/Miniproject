@@ -47,13 +47,13 @@
     while($rs = mysqli_fetch_array($result))
     {
       $room[] = array(
-        'R_typeR' => $rs['RoomType'],
-        'R_Des' => $rs['Description'],
-        'R_key' => $rs['RT_ID'],          
-        'R_img' => $rs['img'],          
-        'R_details' => $rs['details'],      
-        'R_price' => $rs['PriceRoom'],        
-        'R_size' => $rs['SizeRoom'] 
+        'r_typeR' => $rs['RoomType'],
+        'r_des' => $rs['Description'],
+        'r_key' => $rs['RT_ID'],          
+        'r_img' => $rs['img'],          
+        'r_details' => $rs['details'],      
+        'r_price' => $rs['PriceRoom'],        
+        'r_size' => $rs['SizeRoom'] 
       );
     }
     $json = json_encode($room);
@@ -94,9 +94,6 @@
         );
     }
     $data=0;
-
-    
-
 
     $json = json_encode($room);
     echo $json;
