@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2018 at 06:56 AM
+-- Generation Time: Apr 05, 2018 at 08:23 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `customer` (
   `Cus_ID` int(11) NOT NULL,
-  `Cus_IDCard` int(13) NOT NULL,
+  `Cus_IDCard` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `FullName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `Email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `Phone` varchar(30) COLLATE utf8_unicode_ci NOT NULL
@@ -41,9 +41,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`Cus_ID`, `Cus_IDCard`, `FullName`, `Email`, `Phone`) VALUES
-(1, 2147483647, 'Miki   Frog', 'miki@gmail.com', '021354789'),
-(2, 2147483647, 'Moo Karn', 'Moo@hotmail.com', '0849716521'),
-(3, 2147483647, 'Pimkanok Sopha', 'nueha.pimkanok@gmail.com', '0849716014');
+(1, '1212312121123', 'Miki    Frog', 'Miki@gmail.com', '0996587412'),
+(2, '9845231256784', 'Nuea Moo', 'Moo@hotmail.com', '0847162548');
 
 -- --------------------------------------------------------
 
@@ -53,7 +52,7 @@ INSERT INTO `customer` (`Cus_ID`, `Cus_IDCard`, `FullName`, `Email`, `Phone`) VA
 
 CREATE TABLE `reservation` (
   `Res_ID` int(11) NOT NULL,
-  `Cus_IDCard` int(11) NOT NULL,
+  `Cus_IDCard` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Room_Key` int(11) NOT NULL,
   `CheckIn` date NOT NULL,
   `CheckOut` date NOT NULL,
@@ -65,9 +64,8 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`Res_ID`, `Cus_IDCard`, `Room_Key`, `CheckIn`, `CheckOut`, `Price`) VALUES
-(1, 2147483647, 11, '2018-04-06', '2018-04-08', 5800),
-(2, 2147483647, 7, '2018-04-08', '2018-04-11', 9600),
-(3, 2147483647, 13, '2018-04-07', '2018-04-10', 5800);
+(1, '1212312121123', 12, '2018-04-05', '2018-04-07', 5800),
+(2, '9845231256784', 14, '2018-04-05', '2018-04-07', 5800);
 
 -- --------------------------------------------------------
 
@@ -169,13 +167,13 @@ ALTER TABLE `roomtype`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `Cus_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Cus_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `Res_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Res_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `room`

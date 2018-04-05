@@ -9,9 +9,9 @@
   $date_to=$_POST["date_to"];
   $r_type=$_POST["r_type"];
   $idroom=$_POST["idroom"];
-  //echo $name." ".$idcard." ".$email." ".$phone." ".$date_from." ".$date_to." ".$r_type." ".$idroom;
+  $Update=@date('Y-m-d H:i:s');
 
-  function SelectCus($idcard)
+ function SelectCus($idcard)
   {
     include 'db.conn.inc.php';
     $sql = "SELECT Cus_ID FROM customer WHERE Cus_IDCard = '".$idcard."'";    
@@ -38,7 +38,6 @@
   if(!empty($idcard))
   {
     $Cus_ID = SelectCus($idcard);
-   // echo "<br>null==>".SelectCus($idcard);
     if(empty($Cus_ID)){
 
       $sqlin = "INSERT INTO customer (Cus_IDCard, FullName, Email, Phone)".
@@ -46,18 +45,22 @@
       $result = mysqli_query($conn, $sqlin);
     }
     $price = SelectPrice($r_type);
-
     $query = "INSERT INTO reservation (Cus_IDCard, Room_Key, CheckIn, CheckOut, Price) ".
     $query .= "VALUES ('".$idcard."', '".$idroom."', '".$date_from."', '".$date_to."', '".$price."')";
     $resultres = mysqli_query($conn, $query);
     
-    header("Location: ../reservation.html");
-   // header("Location: ../details-reservation.html?room=detail-res&RT_ID=");
+    $sqlR="SELECT Res_ID FROM reservation WHERE Cus_IDCard ='".$idcard."'";
+    $resultR = mysqli_query($conn, $sqlR) or die (mysqli_error());
+    $rsR = mysqli_fetch_array($resultR);
+    $res_ID = $rsR['Res_ID'];
+    //echo $res_ID;
+    //header("Location: ../reservation.html");    
+    header("Location: ../details-reservation.html?room=detail-res&RT_ID=$res_ID");
     exit();
   }
   else{
     header("Location: ../reservation.html");
     exit();
   }
-    
+
 ?>
