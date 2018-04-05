@@ -51,6 +51,7 @@
     $query .= "VALUES ('".$idcard."', '".$idroom."', '".$date_from."', '".$date_to."', '".$price."')";
     $resultres = mysqli_query($conn, $query);
     
+    header("Location: ../reservation.html");
    // header("Location: ../details-reservation.html?room=detail-res&RT_ID=");
     exit();
   }

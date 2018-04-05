@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2018 at 08:16 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: Apr 05, 2018 at 06:56 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -41,7 +41,9 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`Cus_ID`, `Cus_IDCard`, `FullName`, `Email`, `Phone`) VALUES
-(1, 2147483647, 'Miki   Frog', 'miki@gmail.com', '021354789');
+(1, 2147483647, 'Miki   Frog', 'miki@gmail.com', '021354789'),
+(2, 2147483647, 'Moo Karn', 'Moo@hotmail.com', '0849716521'),
+(3, 2147483647, 'Pimkanok Sopha', 'nueha.pimkanok@gmail.com', '0849716014');
 
 -- --------------------------------------------------------
 
@@ -63,7 +65,9 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`Res_ID`, `Cus_IDCard`, `Room_Key`, `CheckIn`, `CheckOut`, `Price`) VALUES
-(1, 2147483647, 11, '2018-04-06', '2018-04-08', 5800);
+(1, 2147483647, 11, '2018-04-06', '2018-04-08', 5800),
+(2, 2147483647, 7, '2018-04-08', '2018-04-11', 9600),
+(3, 2147483647, 13, '2018-04-07', '2018-04-10', 5800);
 
 -- --------------------------------------------------------
 
@@ -165,13 +169,13 @@ ALTER TABLE `roomtype`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `Cus_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Cus_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `Res_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Res_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `room`
