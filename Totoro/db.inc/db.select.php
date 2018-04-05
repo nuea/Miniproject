@@ -1,38 +1,6 @@
 <?php
   /** get value **/
   $room = $_GET["room"];
-  
-  /*********** function select room ***********/ 
-  function JoinRoom()
-  {
-    include 'db.conn.inc.php';
-    $arr = array(
-      'typeR' => 'Room type',
-      'count' => 'room total',
-      'RT_ID' => 'id room type',
-      'img' => 'img room',
-      'details' => 'details room',
-      'items' => array()
-     );
-    $query = "SELECT rr.CountRoom, rt.* FROM roomtype rt 
-      LEFT JOIN  (SELECT r.RT_ID,COUNT(r.RT_ID) AS CountRoom FROM room r 
-      LEFT JOIN mannageroom m on m.Room_Key=r.Room_Key 
-      WHERE m.Status='OFF' GROUP by r.RT_ID ) rr ON rr.RT_ID=rt.RT_ID ";
-    $result = mysqli_query($conn,$query);
-    while($rs = mysqli_fetch_assoc($result))
-    {
-      $arr['items'][] = array(
-        'typeR' => $rs['RoomType'],
-        'count' => $rs['CountRoom'],
-        'RT_ID' => $rs['RT_ID'],          
-        'img' => $rs['img'],          
-        'details' => $rs['details']
-      );
-    }
-    $json = json_encode($arr);
-    echo $json;
-  }
-  /*********** end function select room ***********/
 
   /*********** function Select Room Type ***********/ 
   function SelectRoomType($RT_ID){
@@ -117,10 +85,8 @@
 
   /****** end CheckDate *******/
 
-  if ($room == "room"){
-    JoinRoom();
-  }
-  else if ($room == "roomtype"){
+  /***** select function *****/
+  if ($room == "roomtype"){
     $RT_ID = $_GET["RT_ID"]; 
     SelectRoomType($RT_ID);
   }

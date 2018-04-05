@@ -52,7 +52,7 @@ xmlhttp.onreadystatechange = function() {
         data += '<select class="input100" name="r_type" id="r_type" onchange="changeroom(this);">';
         data += '<option value="">Please select room type.</option>';
         for(var i=0; i<obj.length; i++){
-            data += '<option value="'+obj[i].R_key+'">Room type: '+obj[i].R_typeR+" ==> Price: "+obj[i].R_price+' THB</option>';
+            data += '<option value="'+obj[i].r_key+'">Room type: '+obj[i].r_typeR+" ==> Price: "+obj[i].r_price+' THB</option>';
         }
         data += '</select>';
         document.getElementById("out").innerHTML = data;
