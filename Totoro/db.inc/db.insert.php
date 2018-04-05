@@ -9,7 +9,7 @@
   $date_to=$_POST["date_to"];
   $r_type=$_POST["r_type"];
   $idroom=$_POST["idroom"];
-  echo $name." ".$idcard." ".$email." ".$phone." ".$date_from." ".$date_to." ".$r_type." ".$idroom;
+  //echo $name." ".$idcard." ".$email." ".$phone." ".$date_from." ".$date_to." ".$r_type." ".$idroom;
 
   function SelectCus($idcard)
   {
@@ -50,7 +50,8 @@
     $query = "INSERT INTO reservation (Cus_IDCard, Room_Key, CheckIn, CheckOut, Price) ".
     $query .= "VALUES ('".$idcard."', '".$idroom."', '".$date_from."', '".$date_to."', '".$price."')";
     $resultres = mysqli_query($conn, $query);
-    //header("Location: ../reservation.html");
+    
+   // header("Location: ../details-reservation.html?room=detail-res&RT_ID=");
     exit();
   }
   else{

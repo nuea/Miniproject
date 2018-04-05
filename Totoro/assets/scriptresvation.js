@@ -70,7 +70,7 @@ function changeroom(opt){
     cout = document.getElementById("date_to").value;
     var optVal = '?room=chooroom&RT_ID='+val+'&cin='+cin+'&cout='+cout;
     var urlall = url + optVal
-   // document.getElementById("demo").innerHTML = urlall;
+    //document.getElementById("demo").innerHTML = urlall;
     var out;
     var xmlhttpreq = new XMLHttpRequest();
     xmlhttpreq.onreadystatechange = function() {
@@ -80,14 +80,14 @@ function changeroom(opt){
             data += '<div class="cc-selector"><h4>Select Room ID:</h4><ul>';
             for(var i=0; i<out.length; i++){
                 if(out[i].r_status==1){
-                    data += '<li><h4>'+out[i].r_id+'Not null</h4>';
+                    data += '<li><h4>'+out[i].r_id+'</h4>';
+                    data += '<input type="radio" name="idroom" value="" disabled />';
                 }else{
                     data += '<li><h4>'+out[i].r_id+'</h4>';
+                    data += '<input type="radio" name="idroom" value="'+out[i].r_key+'" onclick="myroom();"/>';
                 }
-                data += '<input type="checkbox" id="cb'+(i+1)+'" name="idroom" value="'+out[i].r_key+'" onclick="myroom();"/>';
-                data += '<label for="cb'+(i+1)+'"><img src="img/room/Deluxe_Suite.jpg" /></label></li>';
             }
-            data += '</ul><input type="hidden" id="id_R" value=""><input type="hidden" id="id_rty" value="'+val+'"></div>';
+           data += '</ul><input type="hidden" id="id_R" value=""><input type="hidden" id="id_rty" value="'+val+'"></div>';
             document.getElementById("showRoom").innerHTML = data;
         }
     };
@@ -102,7 +102,7 @@ function CheckDate(){
     cin = document.getElementById("date_from").value;
     cout = document.getElementById("date_to").value;
     var optVal = 'db.inc/db.select.php?room=ckdate&cin='+cin+"&cout="+cout;
-    document.getElementById("demo").innerHTML = optVal;
+    //document.getElementById("demo").innerHTML = optVal;
     var out;
     var xmlhttpreq = new XMLHttpRequest();
     xmlhttpreq.onreadystatechange = function() {

@@ -44,16 +44,21 @@
     or (`CheckOut` >= '".$cin."' AND `CheckOut` <= '".$cout."')) AND `CheckOut` != '".$cin."'";
     $res = mysqli_query($conn, $sql) or die (mysqli_error());
     $valroom = mysqli_fetch_array($res);
-
+    $rsCheck = mysqli_num_rows($res);
+   
     while($rs = mysqli_fetch_array($result))
     {
       $status=0;
-      foreach( $valroom as $value ) 
-      {
-        if($value==$rs['Room_Key']){
-          $status=1;
+      if(!empty($valroom)){
+        foreach( $valroom as $value ) 
+        {
+          //echo "==> ".$value."<br>";
+          if($value==$rs['Room_Key']){
+            $status=1;
+          }
         }
-      }
+      }     
+      
       $room[] = array(
           'r_key' => $rs['Room_Key'],
           'r_id' => $rs['IDRoom'],
@@ -68,7 +73,6 @@
   }
   /*********** end function Select Room ***********/
 
-
   /****** CheckDate *******/
   function active($cin,$cout){
     include 'db.conn.inc.php';
@@ -82,8 +86,40 @@
     }
     echo $data;
   }
-
   /****** end CheckDate *******/
+
+  /****** Detail Reservation *******/
+  function DetailReservation($RT_ID){
+    include 'db.conn.inc.php';  
+    $del = array();
+    $query = "SELECT re.*,c.*,rr.IDRoom, rr.RoomType ,rr.PriceRoom FROM `reservation`re 
+    LEFT JOIN customer c ON c.`Cus_IDCard` = re.`Cus_IDCard` 
+    LEFT JOIN ( 
+      SELECT r.`Room_Key`,r.IDRoom, rt.RoomType ,rt.PriceRoom FROM `room` r 
+      LEFT JOIN roomtype rt ON r.`RT_ID` = rt.`RT_ID` 
+      ) rr ON rr.`Room_Key` = re.`Room_Key` WHERE 1 ";
+    if(!empty($RT_ID)){
+      $query .= "and re.`Res_ID`='".$RT_ID."'";
+    }
+    $result = mysqli_query($conn, $query) or die (mysqli_error());
+    while($rs = mysqli_fetch_array($result))
+    {
+      $del[] = array(
+        'd_cusid' => $rs['Cus_IDCard'],
+        'd_checkin' => $rs['CheckIn'],
+        'd_checkout' => $rs['CheckOut'],     
+        'd_price' => $rs['Price'],            
+        'd_name' => $rs['FullName'],          
+        'd_email' => $rs['Email'],
+        'd_phone' => $rs['Phone'],
+        'd_idroom' => $rs['IDRoom'],       
+        'd_roomtype' => $rs['RoomType'] 
+      );
+    }
+    $json = json_encode($del);
+    echo $json;
+  }
+  /****** end Detail Reservation *******/
 
   /***** select function *****/
   if ($room == "roomtype"){
@@ -103,5 +139,9 @@
     $cin = $_GET["cin"];
     $cout = $_GET["cout"];
     active($cin,$cout);
+  }
+  else if ($room == "detail-res"){
+    $RT_ID = $_GET["RT_ID"];
+    DetailReservation($RT_ID);
   }
 ?>
